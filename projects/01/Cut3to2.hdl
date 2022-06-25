@@ -1,0 +1,11 @@
+CHIP Cut3to2 {
+    IN in[3];
+    OUT out[2];
+
+    PARTS:
+    // Put your code here:
+    Not(in = in[0], out = n0);
+    Not(in = in[1], out = n1);
+    Not(in = n0, out = out[0]);
+    Not(in = n1, out = out[1]);
+}
