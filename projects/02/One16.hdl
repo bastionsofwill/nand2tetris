@@ -1,0 +1,24 @@
+CHIP One16 {
+    IN in;
+    OUT out[16];
+
+    PARTS:
+    // Put your code here:
+    Not(in = in, out = notin);
+    Nand(a = in, b = notin, out = out[0]);
+    Nand(a = in, b = notin, out = out[1]);
+    Nand(a = in, b = notin, out = out[2]);
+    Nand(a = in, b = notin, out = out[3]);
+    Nand(a = in, b = notin, out = out[4]);
+    Nand(a = in, b = notin, out = out[5]);
+    Nand(a = in, b = notin, out = out[6]);
+    Nand(a = in, b = notin, out = out[7]);
+    Nand(a = in, b = notin, out = out[8]);
+    Nand(a = in, b = notin, out = out[9]);
+    Nand(a = in, b = notin, out = out[10]);
+    Nand(a = in, b = notin, out = out[11]);
+    Nand(a = in, b = notin, out = out[12]);
+    Nand(a = in, b = notin, out = out[13]);
+    Nand(a = in, b = notin, out = out[14]);
+    Nand(a = in, b = notin, out = out[15]);
+}

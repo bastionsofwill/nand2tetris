@@ -1,0 +1,22 @@
+CHIP IsZero16 {
+    IN in[16];
+    OUT out;
+
+    PARTS:
+        Or(a = in[0], b = in[1], out = trmt0);
+        Or(a = in[2], b = in[3], out = trmt1);
+        Or(a = in[4], b = in[5], out = trmt2);
+        Or(a = in[6], b = in[7], out = trmt3);
+        Or(a = in[8], b = in[9], out = trmt4);
+        Or(a = in[10], b = in[11], out = trmt5);
+        Or(a = in[12], b = in[13], out = trmt6);
+        Or(a = in[14], b = in[15], out = trmt7);
+        Or(a = trmt0, b = trmt1, out = sf0);
+        Or(a = trmt2, b = trmt3, out = sf1);
+        Or(a = trmt4, b = trmt5, out = sf2);
+        Or(a = trmt6, b = trmt7, out = sf3);
+        Or(a = sf0, b = sf1, out = f0);
+        Or(a = sf2, b = sf3, out = f1);
+        Or(a = f0, b = f1, out = res);
+        Not(in = res, out = out);
+}
