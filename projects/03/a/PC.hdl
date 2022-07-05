@@ -17,4 +17,10 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+        Register(in = in, load = load, out = temp);
+        DFF16(in = temp, out = temp2);
+        Inc16(in = temp2, out = tempInc);
+        Merge1to3(a = reset, b = load, c = inc, out = ctrl);
+        Zero16(in = inc, out = zero);
+        Mux8Way16(a = temp, b = tempInc, c = temp, d = temp, e = zero, f = zero, g = zero, h = zero, sel = ctrl, out = out);
 }
