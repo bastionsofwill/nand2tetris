@@ -1,5 +1,5 @@
 CHIP Merge1to2 {
-    IN a, b, c, d;
+    IN a, b;
     OUT out[2];
 
     PARTS:
