@@ -17,10 +17,12 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
-        Register(in = in, load = load, out = temp);
-        DFF16(in = temp, out = temp2);
-        Inc16(in = temp2, out = tempInc);
-        Merge1to3(a = reset, b = load, c = inc, out = ctrl);
-        Zero16(in = inc, out = zero);
-        Mux8Way16(a = temp, b = tempInc, c = temp, d = temp, e = zero, f = zero, g = zero, h = zero, sel = ctrl, out = out);
+        Or(a = reset, b = load, out = temp);
+        Or(a = temp, b = inc, out = regLoad);
+        Merge1to2(a = reset, b = load, out = regCtrl);
+        Zero16(in = reset, out = zero);
+        Inc16(in = loop, out = inced);
+        Mux4Way16(a = inced, b = in, c = zero, d = zero, sel = regCtrl, out = regIn);
+        Register(in = regIn, load = regLoad, out = loop);
+        And16(a = loop, b = loop, out = out); 
 }

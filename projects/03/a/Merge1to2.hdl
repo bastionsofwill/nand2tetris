@@ -1,0 +1,9 @@
+CHIP Merge1to2 {
+    IN a, b;
+    OUT out[2];
+
+    PARTS:
+    // Put your code here:
+    And(a = a, b = a, out = out[1]);
+    And(a = b, b = b, out = out[0]);
+}
