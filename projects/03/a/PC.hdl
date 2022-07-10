@@ -20,9 +20,8 @@ CHIP PC {
         Or(a = reset, b = load, out = temp);
         Or(a = temp, b = inc, out = regLoad);
         Merge1to2(a = reset, b = load, out = regCtrl);
-        Zero16(in = reset, out = zero);
         Inc16(in = loop, out = inced);
-        Mux4Way16(a = inced, b = in, c = zero, d = zero, sel = regCtrl, out = regIn);
+        Mux4Way16(a = inced, b = in, c = false, d = false, sel = regCtrl, out = regIn);
         Register(in = regIn, load = regLoad, out = loop);
         And16(a = loop, b = loop, out = out); 
 }
