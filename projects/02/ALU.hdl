@@ -43,15 +43,13 @@ CHIP ALU {
 
     PARTS:
     // Put you code here:
-        Zero16(in = zx, out = zero);
-        One16(in = nx, out = one);
         Not16(in = x, out = notx);
         Not16(in = y, out = noty);
 
         Merge1to2(a = zx, b = nx, out = selx);
         Merge1to2(a = zy, b = ny, out = sely);
-        Mux4Way16(a = x, b = notx, c = zero, d = one, sel = selx, out = px);
-        Mux4Way16(a = y, b = noty, c = zero, d = one, sel = sely, out = py);
+        Mux4Way16(a = x, b = notx, c = false, d = true, sel = selx, out = px);
+        Mux4Way16(a = y, b = noty, c = false, d = true, sel = sely, out = py);
         And16(a = px, b = py, out = andxy);
         Add16(a = px, b = py, out = addxy);
         Mux16(a = andxy, b = addxy, sel = f, out = temp);
