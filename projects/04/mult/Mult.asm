@@ -10,3 +10,25 @@
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
 // Put your code here.
+    @R2
+    M=0 // M[R2] = 0
+    @i
+    M=0 // M[i] = 0
+(LOOP)
+    @i
+    D=M // D = i
+    @R1
+    D=D-M // D = i - M[R1]
+    @END
+    D; JEQ // If (i - M[R1] = 0 goto END)
+    @R0
+    D=M // D = M[R0]
+    @R2
+    M=M+D // M[R2] = M[R2] + M[R0]
+    @i
+    M=M+1 // M[i]=M[i]+1
+    @LOOP
+    0;JMP // Goto LOOP
+(END)
+    @END
+    0;JMP
