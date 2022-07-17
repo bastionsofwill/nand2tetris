@@ -40,5 +40,6 @@ CHIP CPU {
 
     PARTS:
     // Put your code here:
-        ALU(x = instruction[], y = instruction[], zx, nx, zy, ny, f, no, out, zr, ng)
+        ALU(x = instruction[], y = instruction[], zx, nx, zy, ny, f, no, out, zr, ng);
+        PC(in = inM[16], reset = reset, out = pc);
 }
