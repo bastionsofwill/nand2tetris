@@ -70,6 +70,6 @@ CHIP CPU {
         Or(a = isJMP0, b = isJMP1, out = temp);
         Or(a = isJMP2, b = temp, out = temp2);
         And(a = temp2, b = instruction[15], out = isJMP);
-        PC(in = regA, load = isJMP, reset = reset, out = PCout);
+        PC(in = regA, load = isJMP, reset = reset, inc = true, out = PCout);
         ReadAddress(in = PCout, out = pc);
 }
