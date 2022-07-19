@@ -20,4 +20,8 @@ CHIP Computer {
 
     PARTS:
     // Put your code here:
+    ROM32K();
+    CPU(inM = , instruction = , reset = reset, outM = , writeM = , addressM = , pc = );
+    Screen();
+    Keyboard();
 }
