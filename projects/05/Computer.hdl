@@ -20,8 +20,15 @@ CHIP Computer {
 
     PARTS:
     // Put your code here:
-    ROM32K();
-    CPU(inM = , instruction = , reset = reset, outM = , writeM = , addressM = , pc = );
-    Screen();
-    Keyboard();
+    ROM32K(address = CPUpc, out = ROMout);
+    Memory(in = CPUoutM, load = CPUwriteM, address = CPUaddressM, out = data);
+    CPU(
+        inM = data, 
+        instruction = ROMout, 
+        reset = reset, 
+        outM = CPUoutM, 
+        writeM = CPUwriteM, 
+        addressM = CPUaddressM, 
+        pc = CPUpc
+    );
 }
