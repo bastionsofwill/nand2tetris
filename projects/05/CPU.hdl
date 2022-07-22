@@ -40,8 +40,9 @@ CHIP CPU {
 
     PARTS:
     // Put your code here:
-        DRegister(in = ALUout, load = instruction[4], out = regD);
         Not(in = instruction[15], out = isAinst);
+        And(a = instruction[4], b = instruction[15], out = loadD);
+        DRegister(in = ALUout, load = loadD, out = regD);
         Or(a = instruction[5], b = isAinst, out = loadA);
         ARegister(in = regAin, load = loadA, out = regA);
         Mux16(a = regA, b = inM, sel = instruction[12], out = yinput);
