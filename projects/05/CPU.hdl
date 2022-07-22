@@ -40,4 +40,37 @@ CHIP CPU {
 
     PARTS:
     // Put your code here:
+        Not(in = instruction[15], out = isAinst);
+        And(a = instruction[4], b = instruction[15], out = loadD);
+        DRegister(in = ALUout, load = loadD, out = regD);
+        Or(a = instruction[5], b = isAinst, out = loadA);
+        ARegister(in = regAin, load = loadA, out = regA);
+        Mux16(a = regA, b = inM, sel = instruction[12], out = yinput);
+        ALU(
+            x = regD,
+            y = yinput,
+            zx = instruction[11], 
+            nx = instruction[10],
+            zy = instruction[9],
+            ny = instruction[8],
+            f = instruction[7],
+            no = instruction[6],
+            out = ALUout,
+            zr = ALUzr,
+            ng = ALUng
+        );
+        Mux16(a = instruction, b = ALUout, sel = instruction[15], out = regAin);
+        And16(a = ALUout, b = ALUout, out = outM);
+        And(a = instruction[15], b = instruction[3], out = writeM);
+        ReadAddress(in = regA, out = addressM);
+        Or(a = ALUng, b = ALUzr, out = isFound);
+        Not(in = isFound, out = ALUps);
+        And(a = instruction[2], b = ALUng, out = isJMP2);
+        And(a = instruction[1], b = ALUzr, out = isJMP1);
+        And(a = instruction[0], b = ALUps, out = isJMP0);
+        Or(a = isJMP0, b = isJMP1, out = temp);
+        Or(a = isJMP2, b = temp, out = temp2);
+        And(a = temp2, b = instruction[15], out = isJMP);
+        PC(in = regA, load = isJMP, reset = reset, inc = true, out = PCout);
+        ReadAddress(in = PCout, out = pc);
 }
