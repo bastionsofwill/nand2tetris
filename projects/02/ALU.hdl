@@ -46,8 +46,8 @@ CHIP ALU {
         Not16(in = x, out = notx);
         Not16(in = y, out = noty);
 
-        Merge1to2(a = zx, b = nx, out = selx);
-        Merge1to2(a = zy, b = ny, out = sely);
+        Merge2to1(a = zx, b = nx, out = selx);
+        Merge2to1(a = zy, b = ny, out = sely);
         Mux4Way16(a = x, b = notx, c = false, d = true, sel = selx, out = px);
         Mux4Way16(a = y, b = noty, c = false, d = true, sel = sely, out = py);
         And16(a = px, b = py, out = andxy);

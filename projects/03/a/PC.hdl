@@ -19,7 +19,7 @@ CHIP PC {
     // Put your code here:
         Or(a = reset, b = load, out = temp);
         Or(a = temp, b = inc, out = regLoad);
-        Merge1to2(a = reset, b = load, out = regCtrl);
+        Merge2to1(a = reset, b = load, out = regCtrl);
         Inc16(in = loop, out = inced);
         Mux4Way16(a = inced, b = in, c = false, d = false, sel = regCtrl, out = regIn);
         Register(in = regIn, load = regLoad, out = loop);

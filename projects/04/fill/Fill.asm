@@ -13,24 +13,24 @@
 
 // Put your code here.
 (LISTEN)
-    @24576
-    D=M
+    @24576 
+    D=M // Read keyboard input
     @WHITE
-    D;JEQ
+    D;JEQ // JMP to WHITE if keyboard input does not exists
     @BLACK
-    D;JGT
+    D;JGT // JMP to BLACK if keyboard input exists
     @LISTEN
-    0;JMP
+    0;JMP // (Not used) JMP to LISTEN if keyboard input is negative
 (BLACK)
     @16384
-    D=A
+    D=A // Screen memory map address(0x4000)
     @i
     M=D // M[i] = 0x4000
     (LOOPB)
         @24576
-        D=M
+        D=M // Read keyboard input
         @WHITE
-        D;JEQ 
+        D;JEQ // JMP to WHITE if keyboard input does not exists
         @i
         D=M // D = M[i]
         @24576
@@ -39,21 +39,21 @@
         D;JEQ // Break if M[i] = 0x6000
         @i
         A=M // A = M[i]        
-        M=-1 // M[M[i]] = -1
+        M=-1 // M[M[i]] = -1(Black)
         @i
         M=M+1 // M[i] += 1
         @LOOPB
         0;JMP
 (WHITE)
     @16384
-    D=A
+    D=A // Screen memory map address(0x4000) 
     @i
     M=D // M[i] = 0x4000
     (LOOPW)
         @24576
-        D=M
+        D=M // Read keyboard input
         @BLACK
-        D;JGT
+        D;JGT // JMP to BLACK if keyboard input exists
         @i
         D=M // D = M[i]
         @24576
@@ -62,7 +62,7 @@
         D;JEQ // Break if M[i] = 0x6000
         @i
         A=M // D = M[i]
-        M=0 // M[M[i]] = 0
+        M=0 // M[M[i]] = 0(White)
         @i
         M=M+1 // M[i] += 1
         @LOOPW

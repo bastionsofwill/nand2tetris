@@ -16,11 +16,11 @@
     M=0 // M[i] = 0
 (LOOP)
     @i
-    D=M // D = i
+    D=M // D = M[i]
     @R1
-    D=D-M // D = i - M[R1]
+    D=D-M // D = M[i] - M[R1]
     @END
-    D; JEQ // If (i - M[R1] = 0 goto END)
+    D; JEQ // If (M[i] - M[R1] = 0 goto END)
     @R0
     D=M // D = M[R0]
     @R2

@@ -1,4 +1,4 @@
-CHIP Merge1to2 {
+CHIP Merge2to1 {
     IN a, b;
     OUT out[2];
 

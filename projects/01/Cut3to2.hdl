@@ -1,3 +1,10 @@
+// This chip is built to reuse Mux4Way16 in Mux8Way16 chip.
+
+/**
+ * Remove the last bit of 3-bit input and print 2-bit output:
+ * out = in[0:2]
+ */
+
 CHIP Cut3to2 {
     IN in[3];
     OUT out[2];
